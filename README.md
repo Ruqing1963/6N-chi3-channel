@@ -32,16 +32,21 @@ This refines the "CRT information barrier" of the companion note (`6N-crt-barrie
 
 **The cautionary core:** the discipline that matters is not *"did the signal survive the controls"* but *"what exact known quantity could produce it"* — pursued until the signal is explained or genuinely cannot be. In two theatres a large signal survived the standard controls and dissolved only under mechanism analysis.
 
-## Addendum — a Galois-fluid stress test (Frobenius traces a_ℓ)
+## Addendum — two adversarial tests of the χ(3) channel
 
-The companion addendum subjects the χ(3) principle to its hardest case: a quantity drawn from a *different* Euler factor — the Frobenius trace a_ℓ(E_p) for ℓ = 7, 13 (extracted via `E.ap(ℓ)`, 2260 primes p < 2×10⁴).
+The companion addendum subjects the χ(3) principle to two deliberate break-in attempts, constructed to give the wing its best chance. They fail by **opposite** mechanisms and reach the **same** verdict.
 
-| | controller | dependence of a_ℓ |
+**Test A — decrepitation (Galois fluid).** Frobenius traces a_ℓ(E_p), ℓ = 7, 13, over 2260 primes.
+
+**Test B — a native level-6 plume (Langlands).** Hecke eigenvalues a_p of the Γ₀(6) newforms, weights k = 4, 6 (S₂(Γ₀(6)) is 0-dimensional), over 667 primes.
+
+| | Test A: a_ℓ(E_p) | Test B: a_p of level-6 newform |
 |---|---|---|
-| Positive control | p mod ℓ (ℓ = 7, 13) | **η² = 1.000** (fully determined) |
-| Main test | p mod 3 (the 6N wing) | **\|d\| ≈ 0.005** (null) |
+| Wing effect (Cohen's d) | −0.006, −0.004 | +0.028, +0.043 |
+| Controller of the observable | p mod ℓ | none of small modulus |
+| Variance explained by it | **η² = 1.000** | **η²(p mod 12) ≈ 0.002** |
 
-One and the same quantity is *completely* determined by p mod ℓ yet *completely* independent of p mod 3. This is not the wing being blocked — it is the Chinese Remainder Theorem itself: a_ℓ **is** a CRT coordinate (bombarding p at temperature ℓ yields exactly p mod ℓ, an axis orthogonal to the wing). The positive control (η² = 1.000) certifies the instrument, so the null carries the highest confidence of any negative in the series. This independently verifies the χ(3) principle (a_ℓ lives in the q=ℓ factor, not q=3) and closes the family: any "wing vs a_ℓ" probe returns the same, for every ℓ. See `paper/6N_chi3_Addendum_GaloisFluid.pdf`.
+The two controls are mirror images: in A the observable is *perfectly* determined by a congruence (a_ℓ **is** a CRT coordinate — bombarding p at temperature ℓ yields exactly p mod ℓ, orthogonal to the wing); in B the observable is *immune* to every small congruence (Sato–Tate pseudo-randomness — the level-6 "gene" governs the bad primes 2,3, not the relation between a_p and p mod 3). Yet in both, the 6N wing explains nothing. Orthogonality of parallel coordinates and the scale-isolation of automorphic spectra are different laws enforcing one boundary: **the control of the 6N wing is locked into elementary number theory and the single χ(3) Euler channel.** Having chosen the attacks to be as favourable to the wing as possible, we regard the boundary as confirmed. See `paper/6N_chi3_Addendum_TwoAdversarialTests.pdf`.
 
 ## Repository layout
 
@@ -51,8 +56,8 @@ One and the same quantity is *completely* determined by p mod ℓ yet *completel
 │   ├── 6N_chi3_Channel_ThreeTheatres.pdf   ← read this first
 │   ├── 6N_chi3_Channel_ThreeTheatres.docx
 │   ├── 6N_chi3_Channel_ThreeTheatres.tex   ← LaTeX source
-│   ├── 6N_chi3_Addendum_GaloisFluid.pdf    ← addendum: Frobenius-trace stress test
-│   └── 6N_chi3_Addendum_GaloisFluid.tex
+│   ├── 6N_chi3_Addendum_TwoAdversarialTests.pdf  ← addendum: two break-in tests
+│   └── 6N_chi3_Addendum_TwoAdversarialTests.tex
 ├── code/
 │   ├── Ep_rank.sage                  ← Theatre 0: certified true-rank well-log (SageMath)
 │   ├── Ep_three_layer_analysis.py    ← Theatre 0: three-layer analysis (Python)
@@ -60,18 +65,22 @@ One and the same quantity is *completely* determined by p mod ℓ yet *completel
 │   ├── Lzero_calibration.sage        ← Theatre II: zero-API calibration (run FIRST)
 │   ├── Lzero_log.sage                ← Theatre II: first-zero well-log (PARI lfunzeros)
 │   ├── Lzero_analysis.py             ← Theatre II: γ₁ vs wing / χ(3) analysis (Python)
-│   ├── Galois_fluid_log.sage         ← Addendum: a_7, a_13 extraction (SageMath)
-│   ├── Galois_fluid_analysis.py      ← Addendum: positive control + wing null (Python)
-│   └── make_unified_figs.py          ← figures (Python)
+│   ├── Galois_fluid_log.sage         ← Test A: a_7, a_13 extraction (SageMath)
+│   ├── Galois_fluid_analysis.py      ← Test A: positive control + wing null (Python)
+│   ├── Langlands_plume_log.sage      ← Test B: level-6 newform a_p extraction (SageMath)
+│   ├── Langlands_plume_analysis.py   ← Test B: wing null + mechanism control (Python)
+│   ├── make_unified_figs.py          ← main-paper figures (Python)
+│   └── make_adversarial_fig.py       ← addendum figure (Python)
 ├── data/
 │   ├── Ep_Rank_Log.csv               ← 1227 curves
 │   ├── ClassNumber_Log.csv           ← 5131 primes
 │   ├── L_Function_Zeros_Log.csv      ← 1227 primes
-│   └── Galois_Fluid_Isotopes_Log.csv ← 2260 primes (a_7, a_13)
+│   ├── Galois_Fluid_Isotopes_Log.csv ← 2260 primes (a_7, a_13)
+│   └── Langlands_Plume_Log.csv       ← 1334 rows (level-6 newforms, k=4,6)
 ├── figures/
 │   ├── fig_three_theatres.{pdf,png}
 │   ├── fig_chi3_collinear.{pdf,png}
-│   └── fig_galois_fluid.{pdf,png}
+│   └── fig_adversarial.{pdf,png}
 ├── README.md
 ├── LICENSE
 └── CITATION.cff
@@ -94,10 +103,14 @@ python3 code/Lzero_analysis.py       # analysis
 sage code/ClassNumber_log.sage       # Theatre I
 sage code/Ep_rank.sage               # Theatre 0 (see 6N-crt-barrier for full treatment)
 
-sage code/Galois_fluid_log.sage      # Addendum: extract a_7, a_13 (fast; E.ap)
-python3 code/Galois_fluid_analysis.py # Addendum: positive control + wing null
+sage code/Galois_fluid_log.sage      # Test A: extract a_7, a_13 (fast; E.ap)
+python3 code/Galois_fluid_analysis.py # Test A: positive control + wing null
 
-python3 code/make_unified_figs.py    # figures
+sage code/Langlands_plume_log.sage   # Test B: level-6 newform a_p (k=2 is empty; k=4,6 have forms)
+python3 code/Langlands_plume_analysis.py # Test B: wing null + mechanism control
+
+python3 code/make_unified_figs.py    # main-paper figures
+python3 code/make_adversarial_fig.py # addendum figure
 ```
 
 ## Data dictionaries
