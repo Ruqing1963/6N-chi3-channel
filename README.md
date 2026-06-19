@@ -32,6 +32,17 @@ This refines the "CRT information barrier" of the companion note (`6N-crt-barrie
 
 **The cautionary core:** the discipline that matters is not *"did the signal survive the controls"* but *"what exact known quantity could produce it"* — pursued until the signal is explained or genuinely cannot be. In two theatres a large signal survived the standard controls and dissolved only under mechanism analysis.
 
+## Addendum — a Galois-fluid stress test (Frobenius traces a_ℓ)
+
+The companion addendum subjects the χ(3) principle to its hardest case: a quantity drawn from a *different* Euler factor — the Frobenius trace a_ℓ(E_p) for ℓ = 7, 13 (extracted via `E.ap(ℓ)`, 2260 primes p < 2×10⁴).
+
+| | controller | dependence of a_ℓ |
+|---|---|---|
+| Positive control | p mod ℓ (ℓ = 7, 13) | **η² = 1.000** (fully determined) |
+| Main test | p mod 3 (the 6N wing) | **\|d\| ≈ 0.005** (null) |
+
+One and the same quantity is *completely* determined by p mod ℓ yet *completely* independent of p mod 3. This is not the wing being blocked — it is the Chinese Remainder Theorem itself: a_ℓ **is** a CRT coordinate (bombarding p at temperature ℓ yields exactly p mod ℓ, an axis orthogonal to the wing). The positive control (η² = 1.000) certifies the instrument, so the null carries the highest confidence of any negative in the series. This independently verifies the χ(3) principle (a_ℓ lives in the q=ℓ factor, not q=3) and closes the family: any "wing vs a_ℓ" probe returns the same, for every ℓ. See `paper/6N_chi3_Addendum_GaloisFluid.pdf`.
+
 ## Repository layout
 
 ```
@@ -39,7 +50,9 @@ This refines the "CRT information barrier" of the companion note (`6N-crt-barrie
 ├── paper/
 │   ├── 6N_chi3_Channel_ThreeTheatres.pdf   ← read this first
 │   ├── 6N_chi3_Channel_ThreeTheatres.docx
-│   └── 6N_chi3_Channel_ThreeTheatres.tex   ← LaTeX source
+│   ├── 6N_chi3_Channel_ThreeTheatres.tex   ← LaTeX source
+│   ├── 6N_chi3_Addendum_GaloisFluid.pdf    ← addendum: Frobenius-trace stress test
+│   └── 6N_chi3_Addendum_GaloisFluid.tex
 ├── code/
 │   ├── Ep_rank.sage                  ← Theatre 0: certified true-rank well-log (SageMath)
 │   ├── Ep_three_layer_analysis.py    ← Theatre 0: three-layer analysis (Python)
@@ -47,14 +60,18 @@ This refines the "CRT information barrier" of the companion note (`6N-crt-barrie
 │   ├── Lzero_calibration.sage        ← Theatre II: zero-API calibration (run FIRST)
 │   ├── Lzero_log.sage                ← Theatre II: first-zero well-log (PARI lfunzeros)
 │   ├── Lzero_analysis.py             ← Theatre II: γ₁ vs wing / χ(3) analysis (Python)
+│   ├── Galois_fluid_log.sage         ← Addendum: a_7, a_13 extraction (SageMath)
+│   ├── Galois_fluid_analysis.py      ← Addendum: positive control + wing null (Python)
 │   └── make_unified_figs.py          ← figures (Python)
 ├── data/
 │   ├── Ep_Rank_Log.csv               ← 1227 curves
 │   ├── ClassNumber_Log.csv           ← 5131 primes
-│   └── L_Function_Zeros_Log.csv      ← 1227 primes
+│   ├── L_Function_Zeros_Log.csv      ← 1227 primes
+│   └── Galois_Fluid_Isotopes_Log.csv ← 2260 primes (a_7, a_13)
 ├── figures/
 │   ├── fig_three_theatres.{pdf,png}
-│   └── fig_chi3_collinear.{pdf,png}
+│   ├── fig_chi3_collinear.{pdf,png}
+│   └── fig_galois_fluid.{pdf,png}
 ├── README.md
 ├── LICENSE
 └── CITATION.cff
@@ -76,6 +93,9 @@ python3 code/Lzero_analysis.py       # analysis
 
 sage code/ClassNumber_log.sage       # Theatre I
 sage code/Ep_rank.sage               # Theatre 0 (see 6N-crt-barrier for full treatment)
+
+sage code/Galois_fluid_log.sage      # Addendum: extract a_7, a_13 (fast; E.ap)
+python3 code/Galois_fluid_analysis.py # Addendum: positive control + wing null
 
 python3 code/make_unified_figs.py    # figures
 ```

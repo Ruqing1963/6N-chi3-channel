@@ -1,0 +1,46 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "The chi(3) Channel: How the 6N Wing Enters L-Function-Derived Invariants, and Where It Stops"
+abstract: >-
+  A methodological note in the 6N Arithmetic Geodynamics series. Across three theatres
+  (elliptic-curve rank of E_p: y^2=x^3-p; class number h(-p) of Q(sqrt(-p)); first zero
+  height gamma_1 of the Dirichlet L-function of chi_{-p}) it tests whether the 6N wing of a
+  prime p controls the invariant. In two theatres a large wing signal (Cohen's d up to 1.36)
+  survives scale normalisation and genus stratification, yet collapses to zero once the q=3
+  Euler factor chi(3) is removed. For p>3 the wing partition is identically the chi_{-p}(3)
+  split. We state a chi(3)-channel principle: the mod-3 information of p enters any
+  L-function-derived invariant only through the single local factor chi_p(3). The contribution
+  is this boundary principle and three worked examples, not new arithmetic.
+type: software
+authors:
+  - family-names: Chen
+    given-names: Ruqing
+    affiliation: "GUT Geoservice Inc., Montreal"
+    email: ruqing@hotmail.com
+keywords:
+  - 6N skeleton
+  - L-function zeros
+  - class number
+  - elliptic curve rank
+  - Dirichlet character
+  - Euler factor
+  - methodology
+  - negative result
+license: MIT
+repository-code: "https://github.com/Ruqing1963/6N-chi3-channel"
+year: 2026
+references:
+  - type: article
+    title: "Designing Anti-Tautological Probes on the 6N Skeleton: A Negative Case Study with Elliptic-Curve Ranks and the CRT Information Barrier"
+    authors:
+      - family-names: Chen
+        given-names: Ruqing
+    year: 2026
+    doi: 10.5281/zenodo.20755909
+  - type: article
+    title: "Arithmetic Geodynamics on the 6N Skeleton, Part XXXVIII: The Dual Membrane and Korselt Colour-Blindness in Eisenstein Carmichael Ideals"
+    authors:
+      - family-names: Chen
+        given-names: Ruqing
+    year: 2026
+    doi: 10.5281/zenodo.20617161
