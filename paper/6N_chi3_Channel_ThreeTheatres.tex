@@ -1,0 +1,215 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+\usepackage{authblk}
+
+\newcommand{\chip}{\chi_{-p}}
+\title{\textbf{The $\chi(3)$ Channel: How the 6N Wing Enters\\
+L-Function-Derived Invariants, and Where It Stops}}
+\author{R.\ Chen}
+\affil{GUT Geoservice Inc., Montr\'eal}
+\date{\textit{6N Arithmetic Geodynamics series} $\cdot$ Methodological Note $\cdot$ 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+Three independent probes ask whether the 6N wing of a prime $p$ (its class mod $6$, equivalently
+$p \bmod 3$) controls a high-dimensional invariant attached to $p$: the Mordell--Weil rank of
+$E_p : y^2 = x^3 - p$ (Theatre~0), the class number $h(-p)$ of $\mathbb{Q}(\sqrt{-p})$ (Theatre~I),
+and the height $\gamma_1$ of the first nontrivial zero of the Dirichlet $L$-function $L(s,\chip)$
+(Theatre~II). In Theatres~I and~II a large wing signal appears (Cohen's $d = -1.36$ and $-0.83$)
+that \textbf{survives} the standard controls---scale normalisation ($\sqrt{p}$, $\log p$) and genus
+stratification (mod~8). Yet in every case the signal collapses to zero once one specific known
+quantity is removed: the root number (Theatre~0; $d \approx 0.02$), or the $q=3$ Euler factor
+$\chip(3)$ of the $L$-function (Theatres~I,~II; residual $d = 0.005$ and $0.000$). We show this is
+structural, not coincidental: for primes $p > 3$ the wing partition \emph{is identically} the
+$\chip(3)$ split. We state a \textbf{$\chi(3)$-channel principle}: the mod-3 information of $p$ can
+enter any $L$-function-derived invariant only through the single local factor $\chi_p(3)$; once that
+factor is controlled, the wing is noise. The contribution is this boundary principle and three worked
+examples of a large signal that passes the usual controls yet is fully explained by a known
+channel---not new arithmetic.
+\end{abstract}
+
+\section{Introduction}
+In the heuristic 6N framework, every prime $p>3$ lies on one of the two residue classes $6N\pm1$
+(the \textbf{right} wing $6N{+}1$ and \textbf{left} wing $6N{-}1$). A natural question is whether
+this coarse position controls the deep arithmetic of objects built from $p$. A companion note~\cite{chen-crt}
+treated the rank of $E_p$ and found no wing control beyond the root number---an instance of a
+Chinese-Remainder absorption. The present note completes the picture across three theatres and
+isolates the exact mechanism: a single Euler factor.
+
+The methodological point is sharper than a null result. In two of the three theatres the wing signal
+is \textbf{large} ($|d|\approx 0.8\text{--}1.4$) and \textbf{survives the controls one would normally
+trust}---it is not a scale artifact and not a genus artifact. A study that stopped at ``signal
+survives scale and genus stratification'' would report a strong discovery. Only by pursuing the
+\emph{mechanism}---asking which exact known quantity could produce it---does the signal dissolve.
+This is the cautionary core of the note.
+
+\section{The three theatres and their observables}
+\textbf{Theatre 0 --- elliptic-curve rank.} For each prime $p$, the rank of $E_p : y^2 = x^3 - p$.
+Certified true ranks for $1116$ of $1227$ primes $p<10^4$ (SageMath). Treated in full in~\cite{chen-crt};
+summarised here.
+
+\noindent\textbf{Theatre I --- class number.} For each prime $p$, the class number $h(-p)$ of the
+imaginary quadratic field $\mathbb{Q}(\sqrt{-p})$. Exact values for all $5131$ primes $p<5\times10^4$
+(\texttt{K.class\_number()}).
+
+\noindent\textbf{Theatre II --- first L-zero.} For each prime $p$, the height $\gamma_1$ of the first
+nontrivial zero of the Dirichlet $L$-function of the quadratic character $\chip$, computed by PARI
+\texttt{lfunzeros} for all $1227$ primes $p<10^4$.
+
+Each observable is primality-independent (knowing ``$p$ is prime'' fixes none of them) and carries
+the natural 6N bridge $p\bmod 6$. Each is therefore an admissible probe in the sense of~\cite{chen-crt}.
+
+\section{The known confounders, and why we strip them in layers}
+\textbf{Scale.} Class number grows like $\sqrt{p}$ (Dirichlet's formula $h \approx (\sqrt{p}/\pi)L(1,\chi)$);
+the first zero falls like $1/\log p$ (Riemann--von Mangoldt density, conductor $\sim p$). Raw
+comparisons between wings therefore mostly measure the size of the primes. We normalise: $h/\sqrt{p}$
+and $\gamma_1\cdot\log p$.
+
+\noindent\textbf{Genus / conductor parity.} The 2-part of $h$ and the conductor type ($-p$ vs $-4p$)
+are fixed by $p\bmod 8$ (genus theory). We stratify on $\mathrm{disc}\bmod 8$.
+
+\noindent\textbf{The root number (Theatre 0).} Rank parity is fixed by $w(E_p)$, a function of
+$p\bmod 24$. We stratify on it~\cite{chen-crt}.
+
+These strip the obvious channels. What remains---and what the next section shows is the whole
+story---is a single arithmetic factor.
+
+\section{Results: a large signal that survives the usual controls, then collapses}
+\begin{table}[h]
+\centering
+\caption{The 6N-wing effect ($|$Cohen's $d|$) at each stage of stripping.}
+\begin{tabular}{lcccc}
+\toprule
+Theatre / observable & raw & scale-norm. & within genus (mod 8) & after known channel \\
+\midrule
+0 --- rank $E_p$ & 0.022 & --- & --- & 0.022 \ (root no.) \\
+I --- $h(-p)$    & 0.998 & 1.363 & 2.0--2.3 & \textbf{0.005} \ (q{=}3 factor) \\
+II --- $\gamma_1$ & 0.656 & 0.829 & 0.8--1.4 & \textbf{0.000} \ ($\chi(3)$ split) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent In Theatres~I and~II the signal not only persists but grows under scale- and
+genus-stripping (it is genuinely not those artifacts), then vanishes the instant the $q=3$ / $\chi(3)$
+factor is removed.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.78\textwidth]{fig_three_theatres.pdf}
+\caption{The 6N-wing effect before and after removing the known congruence channel. In all three
+theatres the residual is negligible; the large bars in Theatres~I and~II are entirely the
+$q{=}3$ / $\chi(3)$ channel.}
+\end{figure}
+
+\subsection{The mechanism: the wing IS the $\chi(3)$ split}
+The collapse is not a fitted correction; it is an identity. For a prime $p>3$, the wing is $p\bmod 6$,
+which is determined by $p\bmod 3$; and $\chip(3) = (\mathrm{disc}\,|\,3)$ (Kronecker symbol) is also
+determined by $p\bmod 3$. Concretely, across all $1227$ primes in Theatre~II the two partitions
+coincide with no exceptions:
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+6N wing & $\chip(3)$ \\
+\midrule
+right ($6N{+}1$), $p\equiv 1\bmod 3$ --- 611 primes & $-1$ (all 611) \\
+left ($6N{-}1$), $p\equiv 2\bmod 3$ --- 616 primes & $+1$ (all 616) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Because the partitions are identical, the variance of $\gamma_1\cdot\log p$ explained by the wing
+($0.147$) equals that explained by $\chip(3)$ ($0.147$) to the digit, and the residual wing effect
+after removing the $\chi(3)$-group means is exactly $0.0000$. The same identity drives Theatre~I: the
+$q=3$ Euler factor of $L(1,\chi)$ is $(1-\chi(3)/3)^{-1}$, equal to $0.75$ on the right wing and
+$1.50$ on the left; the predicted left/right class-number ratio $1.50/0.75 = 2.000$ matches the
+observed $1.995$, and dividing this factor out sends $d$ from $-1.36$ to $+0.005$.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.70\textwidth]{fig_chi3_collinear.pdf}
+\caption{Theatre~II: the wing split is the $\chi(3)$ split (100\% collinear for $p>3$). The first zero
+sits higher on the $\chi(3){=}{+}1$ wing because $L(1,\chi)$ is larger there; there is no wing effect
+independent of $\chi(3)$.}
+\end{figure}
+
+\section{The $\chi(3)$-channel principle}
+The three theatres point to one statement, recorded as a heuristic boundary principle rather than a
+theorem:
+
+\begin{quote}
+\textbf{$\chi(3)$-channel principle.} The mod-3 information of a prime $p$---equivalently its 6N
+wing---can enter any $L$-function-derived invariant of an object built from $p$ only through the single
+local factor $\chi_p(3)$ (the behaviour of $3$ in the associated field). Once $\chi(3)$ is controlled,
+the wing exerts no further influence.
+\end{quote}
+
+The reason is that $p\bmod 3$ has, in the analytic theory, exactly one natural home: the value of the
+mod-3 quadratic character. Any $L$-function attached to $p$ carries that information solely in its
+$q=3$ Euler factor; rank, class number, and zero height are all functionals of such $L$-functions, so
+the wing can reach them only through that one door. Close it, and nothing of the wing remains.
+
+This refines the ``CRT information barrier'' of~\cite{chen-crt}. There the wing was absorbed by a finer
+congruence; here we name the finer congruence exactly (the $q=3$ factor) and explain why it must be the
+only one. The principle is predictive: any further $L$-derived probe in this family---real quadratic
+class numbers, higher zeros $\gamma_k$, $L$-function moments, Selmer ranks---will show a wing effect
+that is exactly its $\chi(3)$ content and nothing more.
+
+\section{Conclusion}
+Across three independent theatres---elliptic-curve rank, class number, and first $L$-zero---the 6N wing
+has no control over the invariant beyond the single Euler factor $\chi(3)$. In two theatres the raw
+wing signal is large and survives scale- and genus-stripping, dissolving only when $\chi(3)$ is
+removed. We read this as a $\chi(3)$-channel principle delimiting where the 6N skeleton can and cannot
+reach into analytic arithmetic.
+
+The intended contribution is a boundary and a method: three worked examples in which a large,
+control-surviving signal is nonetheless fully accounted for by a known channel, and a principle that
+predicts the same for the rest of the family. The discipline that matters is not ``did the signal
+survive the controls'' but ``what exact known quantity could produce it''---pursued until the signal
+is explained or genuinely cannot be.
+
+\subsection*{Reproducibility}
+Theatre~0: SageMath \texttt{E.rank()} with \texttt{rank\_bounds()} fallback~\cite{chen-crt}.
+Theatre~I: \texttt{QuadraticField(-p).class\_number()}; observable $h/\sqrt{p}$.
+Theatre~II: PARI \texttt{lfunzeros(lfuncreate(d),$\cdot$)} for the first zero; observable
+$\gamma_1\cdot\log p$. A calibration step confirmed the zero API before the batch run (the older
+\texttt{Lfunction\_from\_character} API is absent in SageMath~9.3; PARI \texttt{lfunzeros} was used).
+Effect sizes are Cohen's $d$ on depth-/class-matched populations; collinearity and variance-explained
+as in \S4.1. Data, scripts, and this \LaTeX{} source are available at
+\url{https://github.com/Ruqing1963/6N-chi3-channel}.
+
+\paragraph{Honesty statement.} This note reports negative results whose cause is known structure (a
+single Euler factor). It claims no new theorem and no predictive power over primes. In two theatres a
+large signal survived the standard controls; it was retained as a finding only until its mechanism was
+identified, at which point it was reported as explained.
+
+\begin{thebibliography}{9}
+\bibitem{chen-crt} R.\ Chen. \emph{Designing Anti-Tautological Probes on the 6N Skeleton: A Negative
+Case Study with Elliptic-Curve Ranks and the CRT Information Barrier.} Zenodo, 2026.
+DOI: 10.5281/zenodo.20755909.
+\bibitem{chen-38} R.\ Chen. \emph{Arithmetic Geodynamics on the 6N Skeleton, Part XXXVIII: The Dual
+Membrane and Korselt Colour-Blindness in Eisenstein Carmichael Ideals.} Zenodo, 2026.
+DOI: 10.5281/zenodo.20617161.
+\bibitem{dirichlet} P.\,G.\,L.\ Dirichlet. Recherches sur diverses applications de l'analyse
+infinit\'esimale \`a la th\'eorie des nombres. \emph{J.\ Reine Angew.\ Math.} (classical; class number
+formula).
+\bibitem{dh} H.\ Davenport and H.\ Heilbronn. On the density of discriminants of cubic fields, II.
+\emph{Proc.\ Roy.\ Soc.\ London Ser.\ A} \textbf{322} (1971), 405--420.
+\bibitem{cl} H.\ Cohen and H.\,W.\ Lenstra. Heuristics on class groups of number fields. In
+\emph{Number Theory Noordwijkerhout 1983}, Lecture Notes in Math.\ \textbf{1068}, Springer (1984),
+33--62.
+\bibitem{pari} The PARI Group. \emph{PARI/GP} (used via SageMath 9.3 for \texttt{lfunzeros}).
+\url{http://pari.math.u-bordeaux.fr}.
+\bibitem{sage} The Sage Developers. \emph{SageMath, the Sage Mathematics Software System (Version 9.3).}
+2021. \url{https://www.sagemath.org}.
+\end{thebibliography}
+
+\end{document}
