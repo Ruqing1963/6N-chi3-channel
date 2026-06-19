@@ -1,8 +1,0 @@
-__pycache__/
-*.pyc
-*.sage.py
-*.aux
-*.log
-*.out
-.ipynb_checkpoints/
-.DS_Store
