@@ -1,0 +1,100 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{authblk}
+
+\newcommand{\Fl}{\mathbb{F}_\ell}
+\title{\textbf{Addendum: Two Adversarial Tests of the $\chi(3)$ Channel}\\
+\large Frobenius traces and a level-6 automorphic form against the 6N wing}
+\author{R.\ Chen}
+\affil{GUT Geoservice Inc., Montr\'eal}
+\date{\textit{6N Arithmetic Geodynamics series} $\cdot$ Addendum to the $\chi(3)$ Channel note $\cdot$ 2026}
+
+\begin{document}
+\maketitle
+
+\noindent
+The $\chi(3)$-channel principle asserts that the 6N wing of a prime $p$ (its class $p\bmod 3$) can
+enter an $L$-function-derived invariant only through the $q=3$ Euler factor $\chi_p(3)$. A principle
+of this kind earns its standing by surviving attempts to break it. This addendum reports two such
+attempts---deliberately constructed to give the wing its best chance---together with the data that
+defeat them. They fail by \emph{opposite} mechanisms and reach the \emph{same} verdict.
+
+\section*{The two break-in attempts}
+\textbf{Test A --- decrepitation (Galois fluid).} Bombard the curve $E_p : y^2 = x^3 - p$ at a prime
+``temperature'' $\ell$ and extract the Frobenius trace $a_\ell(E_p)$, for $\ell = 7, 13$, over all
+$2260$ primes $3 < p < 2\times10^4$. The hope: a quantity drawn from deep in the Galois representation
+might carry wing information past the CRT lattice.
+
+\noindent\textbf{Test B --- a native level-6 plume (Langlands).} Instead of a generic object, choose
+one whose \emph{level} already carries $6$: the cusp-form newforms of $\Gamma_0(6)$, weights $k=4,6$
+(the space $S_2(\Gamma_0(6))$ is $0$-dimensional, so $k=2$ is empty). Extract the Hecke eigenvalue
+$a_p$ at all $667$ primes $3 < p < 5000$. The hope: an automorphic form built on $6$ might split its
+spectrum along the $6N$ wings.
+
+\section*{The data's verdict}
+Both attempts return a flat null on the wing, with effect sizes below the noise floor:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+ & Test A: $a_\ell(E_p)$ & Test B: $a_p$ of level-6 newform \\
+\midrule
+Wing effect (Cohen's $d$) & $-0.006$ ($a_7$), $-0.004$ ($a_{13}$) & $+0.028$ ($k{=}4$), $+0.043$ ($k{=}6$) \\
+Shuffle test & null & $p = 0.625,\ 0.430$ \\
+\textbf{Controller of the observable} & $p \bmod \ell$ & none of small modulus \\
+\textbf{Variance explained by it} & $\eta^2 = 1.000$ & $\eta^2(p \bmod 12) \approx 0.002$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+The two controls are mirror images. In Test A the observable is \emph{perfectly} determined by a
+congruence: each class $p \bmod \ell$ maps to a single fixed value of $a_\ell$, so $\eta^2 = 1.000$
+exactly. In Test B the observable is \emph{immune} to every small congruence: $a_p$ does not track
+$p \bmod 12$ ($\eta^2 \approx 0.002$), the signature of Sato--Tate pseudo-randomness. Yet in both, the
+6N wing ($p \bmod 3$) explains nothing.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{fig_adversarial.pdf}
+\caption{Two opposite mechanisms, one verdict. \emph{Left (Test A):} $a_7(E_p)$ is a step function of
+$p \bmod 7$---absolute determinism, $\eta^2 = 1.000$. \emph{Right (Test B):} the level-6 Hecke
+eigenvalue $a_p$ shows no structure across $p \bmod 12$ (note the $\pm0.2$ scale)---absolute
+pseudo-randomness, $\eta^2 \approx 0.002$. In neither case does the 6N wing reach the observable
+($|d| < 0.07$).}
+\end{figure}
+
+\section*{Why both fail, and what it confirms}
+\textbf{Test A: the fluid is a coordinate.} $a_\ell(E_p)$ depends only on $-p \bmod \ell$, because the
+reduction $E_p \bmod \ell$ does. So $a_\ell$ is not a deep fluid sealed inside the CRT lattice---it
+\emph{is} a CRT coordinate. Bombarding $p$ at temperature $\ell$ yields exactly $p \bmod \ell$, an axis
+orthogonal to the wing $p \bmod 3$ by the Chinese Remainder Theorem. The probe extracts the purest
+possible CRT product.
+
+\noindent\textbf{Test B: the gene sits on the wrong primes.} The level $6 = 2\cdot 3$ governs the
+\emph{bad} primes $p = 2, 3$; it fixes $a_2, a_3$. For every good prime $p$ (every $6N\pm1$ prime) the
+eigenvalue $a_p$ is a Frobenius trace whose value is congruence-immune---and in particular carries no
+$p \bmod 3$ information. The ``6 gene'' lives on the level, not on the relation between $a_p$ and the
+wing. An object built on $6$ still cannot make its good-prime spectrum feel which wing $p$ lies on.
+
+\noindent\textbf{One verdict.} Orthogonality of parallel coordinates (Test A) and the scale-isolation
+of automorphic spectra (Test B) are different physical laws, but they enforce the same boundary: the
+control of the 6N wing is locked into elementary number theory and the single $\chi(3)$ Euler channel.
+Neither a sharper extraction temperature nor a more sympathetic ambient geometry lets $p \bmod 3$ act
+on a good-prime $L$-coefficient. The $\chi(3)$-channel principle survives both attacks; having chosen
+the attacks to be as favourable to the wing as we could make them, we regard the boundary as
+confirmed.
+
+\paragraph{Archival note.} For Test A: \texttt{Galois\_Fluid\_Isotopes\_Log.csv} (2260 primes),
+\texttt{Galois\_fluid\_log.sage}, \texttt{Galois\_fluid\_analysis.py}. For Test B:
+\texttt{Langlands\_Plume\_Log.csv} (1334 rows; $k=4,6$), \texttt{Langlands\_plume\_log.sage},
+\texttt{Langlands\_plume\_analysis.py}. All archived at
+\url{https://github.com/Ruqing1963/6N-chi3-channel}. Each positive/mechanism control certifies its
+instrument ($\eta^2 = 1.000$ in A; the explicit $p \bmod 12$ table in B), so both nulls carry the
+highest confidence: the instruments are provably working and the wing is provably absent.
+\end{document}
