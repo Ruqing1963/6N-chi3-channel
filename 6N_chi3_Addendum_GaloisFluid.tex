@@ -1,0 +1,81 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{authblk}
+
+\newcommand{\Fl}{\mathbb{F}_\ell}
+\title{\textbf{Addendum: A Galois-Fluid Stress Test of the $\chi(3)$ Channel\\
+\large Frobenius traces $a_\ell(E_p)$ confirm CRT orthogonality}}
+\author{R.\ Chen}
+\affil{GUT Geoservice Inc., Montr\'eal}
+\date{\textit{6N Arithmetic Geodynamics series} $\cdot$ Addendum to the $\chi(3)$ Channel note $\cdot$ 2026}
+
+\begin{document}
+\maketitle
+
+\noindent
+The $\chi(3)$-channel principle predicts that the 6N wing ($p\bmod 3$) can reach an
+$L$-function-derived invariant of $E_p$ only through the $q=3$ Euler factor. This addendum
+subjects that prediction to a deliberately adversarial test, using a quantity drawn from a
+\emph{different} Euler factor: the Frobenius trace $a_\ell(E_p)$ for $\ell = 7, 13$. If the wing
+could influence the curve's local data at $\ell \neq 3$, the principle would have a leak. It does not.
+
+\paragraph{Design.} For every prime $3 < p < 2\times10^4$ (2260 primes) we form $E_p : y^2 = x^3 - p$
+and extract $a_7(E_p)$ and $a_{13}(E_p)$ via \texttt{E.ap($\ell$)} in SageMath. We record, alongside
+the 6N wing, the residues $p\bmod 7$ and $p\bmod 13$. These residues are not noise to be stripped:
+they are the \textbf{positive control}. The reduction $E_p \bmod \ell$ depends only on $-p \bmod \ell$,
+so $a_\ell$ is a deterministic function of $p \bmod \ell$; the control \emph{must} fire if the
+instrument works. The main test then asks whether the wing adds anything.
+
+\paragraph{Result.} The two questions separate as cleanly as an experiment in this series ever has.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+ & controller & dependence of $a_\ell$ \\
+\midrule
+Positive control & $p \bmod \ell$ \ ($\ell = 7, 13$) & $\eta^2 = 1.000$ \ (fully determined) \\
+Main test        & $p \bmod 3$ \ (the 6N wing)        & $|d| \approx 0.005$ \ (null) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+The positive control is not approximate: each residue class $p \bmod 7$ maps to a single fixed value
+of $a_7$ (and likewise $a_{13}$ across its twelve classes), so $p \bmod \ell$ explains $100\%$ of the
+variance. The main test is uniformly null --- for $a_7$, $d = -0.006$; for $a_{13}$, $d = -0.004$; the
+same for $|a_\ell|$, $a_\ell^2$, and the Sato--Tate angle $\theta = \arccos\!\big(a_\ell/2\sqrt{\ell}\big)$
+(all $|d| < 0.008$).
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\textwidth]{fig_galois_fluid.pdf}
+\caption{Left: the positive control fires perfectly --- $a_7$ is a fixed function of $p \bmod 7$
+($\eta^2 = 1.000$). Right: the two wings' $a_7$ distributions coincide (Cohen $d = -0.006$). The same
+quantity is fully determined by $p \bmod 7$ and entirely independent of $p \bmod 3$.}
+\end{figure}
+
+\paragraph{Interpretation: $a_\ell$ is a CRT coordinate.} The result is the cleanest possible display of
+orthogonality. One and the same quantity $a_\ell$ is \emph{completely} determined by $p \bmod \ell$ yet
+\emph{completely} independent of $p \bmod 3$. This is not the wing being blocked by a barrier; it is the
+Chinese Remainder Theorem itself: $p \bmod 7$ and $p \bmod 3$ are independent coordinates, so a function
+of one carries no information about the other. The probe was framed as ``decrepitating the CRT lattice to
+extract a deep fluid,'' but the fluid it extracts --- $a_\ell$ --- \emph{is} a CRT coordinate: bombarding
+$p$ at temperature $\ell$ yields exactly $p \bmod \ell$, an axis orthogonal to the wing.
+
+\paragraph{Consequence for the principle.} This independently verifies the $\chi(3)$-channel principle on
+its hardest case. The wing acts only in the $q=3$ factor; $a_7$ and $a_{13}$ live in the $q=7$ and $q=13$
+factors; different doors, no leak. It also closes the family: any probe ``wing vs $a_\ell$'' for any
+$\ell$ will return $\eta^2 = 1$ against $p \bmod \ell$ and $d = 0$ against the wing, because CRT makes all
+the residue axes mutually orthogonal. No further $\ell$ need be drilled.
+
+\paragraph{Archival note.} Data (\texttt{Galois\_Fluid\_Isotopes\_Log.csv}, 2260 primes), the extraction
+script (\texttt{Galois\_fluid\_log.sage}), and the analysis (\texttt{Galois\_fluid\_analysis.py}) are
+archived with this addendum at \url{https://github.com/Ruqing1963/6N-chi3-channel}. The positive control
+($\eta^2 = 1.000$) certifies the measurement; the result carries the highest confidence of any negative
+in the series, because the instrument is provably working and the null is exact.
+\end{document}
